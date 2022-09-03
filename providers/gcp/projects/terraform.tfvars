@@ -1,0 +1,5 @@
+org_fdqn="organizations/123456789"
+org_id="123456789"
+folder_id="123456789"
+project_name="test"
+project_id="test-123456789"
