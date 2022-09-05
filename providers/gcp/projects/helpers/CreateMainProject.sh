@@ -57,10 +57,10 @@ createStorage() {
 # Main of Script
 if [ $# -eq 2 ];
 then
-    createProject $1 $2
+		createProject $1 $2
 		setBillingAccount $1
 		createStorage $1
-    createServiceAccount $1
+		createServiceAccount $1
     exit 0
 fi
 
