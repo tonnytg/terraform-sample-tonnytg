@@ -53,7 +53,7 @@ createServiceAccount() {
 
 createProject() {
 	gcloud projects create ${PROJECT_ID} --name=${PROJECT_NAME} \
-		--set-as-default --folder=$1
+		--set-as-default --folder=${FOLDER_ID}
 
 	if [ $? -eq 0 ]; then
 		echo "Project ${PROJECT_ID} created"
@@ -64,9 +64,9 @@ createProject() {
 
 enableAPIs() {
 	gcloud services enable cloudbilling.googleapis.com \
-		--project $1
+		--project ${PROJECT_ID}
 	gcloud services enable cloudresourcemanager.googleapis.com \
-		--project $1
+		--project ${PROJECT_ID}
 }
 
 setBillingAccount() {
@@ -95,12 +95,12 @@ createStorage() {
 # Main of Script
 if [ $# -eq 3 ];
 then
-	createProject					${FOLDER_ID}
-	enableAPIs						${PROJECT_ID}
-	setBillingAccount			${ORG_ID}
-	createStorage					${ORG_ID}
-	createServiceAccount	${ORG_ID}
-	setRolePermissions		${ORG_ID}
+	createProject
+	enableAPIs
+	setBillingAccount
+	createStorage
+	createServiceAccount
+	setRolePermissions
 	exit 0
 fi
 
