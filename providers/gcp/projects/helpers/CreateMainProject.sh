@@ -5,7 +5,7 @@
 
 # Variables
 # Change project name what you want, but don't use space
-export NAME_WANTED="main-automation"
+export MAIN_NAME="main-automation"
 
 # Only change values if you know what you do
 # Admin
@@ -13,7 +13,7 @@ export ORG_ID=$1
 export B_ACCOUNT=$2
 export FOLDER_ID=$3
 # Project
-export PROJECT_ID=${NAME_WANTED}-${FOLDER_ID}
+export PROJECT_ID=${MAIN_NAME}-${FOLDER_ID}
 export PROJECT_NAME="Main"
 #ServiceAccount
 export SA_NAME="terraform-sa"
