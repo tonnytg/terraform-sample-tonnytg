@@ -21,7 +21,7 @@ setRolePermissions() {
 
 	gcloud organizations add-iam-policy-binding ${ORG_ID} \
 		--member serviceAccount:${SA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com \
-		--role roles/billing.admin
+		--role roles/billing.user
 
 	gcloud organizations add-iam-policy-binding ${ORG_ID} \
 		--member serviceAccount:${SA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com \
