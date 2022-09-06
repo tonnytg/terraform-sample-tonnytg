@@ -4,13 +4,21 @@
 # This script run for the first time only.
 
 # Variables
+# Change project name what you want, but don't use space
+export NAME_WANTED="main-automation"
+
+# Only change values if you know what you do
+# Admin
 export ORG_ID=$1
-export PROJECT_ID="main-terraform"-${3}
-export PROJECT_NAME="Main"
-export SA_NAME="terraform-sa"
-export SA_DESCRIPTION="Account for Terraform"
-export SA_DISPLAY_NAME="terraform-sa"
 export B_ACCOUNT=$2
+export FOLDER_ID=$3
+# Project
+export PROJECT_ID=${NAME_WANTED}-${FOLDER_ID}
+export PROJECT_NAME="Main"
+#ServiceAccount
+export SA_NAME="terraform-sa"
+export SA_DESCRIPTION="Account for Terraform of ${PROJECT_ID}"
+export SA_DISPLAY_NAME="terraform-sa"
 
 # Set Permissions
 setRolePermissions() {
@@ -56,9 +64,9 @@ createProject() {
 
 enableAPIs() {
 	gcloud services enable cloudbilling.googleapis.com \
-		--project 697654160307
+		--project $1
 	gcloud services enable cloudresourcemanager.googleapis.com \
-		--project 697654160307
+		--project $1
 }
 
 setBillingAccount() {
@@ -87,12 +95,12 @@ createStorage() {
 # Main of Script
 if [ $# -eq 3 ];
 then
-	createProject $1 $2
-	enableAPIs
-	setBillingAccount $1
-	createStorage $1
-	createServiceAccount $1
-	setRolePermissions $1
+	createProject					${FOLDER_ID}
+	enableAPIs						${PROJECT_ID}
+	setBillingAccount			${ORG_ID}
+	createStorage					${ORG_ID}
+	createServiceAccount	${ORG_ID}
+	setRolePermissions		${ORG_ID}
 	exit 0
 fi
 
